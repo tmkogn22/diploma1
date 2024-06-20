@@ -11,7 +11,7 @@ def internet_search(msg):
     url = f'https:/www.google.com/search?q={msg}'
     response = requests.get(url)
     html_code = BeautifulSoup(response.text, 'html.parser')
-    link = html_code.find('div', 'class_=g').find('a', href=True)
+    link = html_code.find('div', class_='g').find('a', href=True)
     if link:
         return link['href']
     else:
