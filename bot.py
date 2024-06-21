@@ -3,13 +3,14 @@ from bs4 import BeautifulSoup
 import requests
 
 
-TOKEN = '***********************'
+TOKEN = '7367365353:AAFqT2YJE4rIpLTOWbB5x0FL7ksR7q37U6Q'
 bot = telebot.TeleBot(TOKEN)
 
 
 def internet_search(msg):
-    url = f'https:/www.google.com/search?q={msg}'
-    response = requests.get(url)
+    url = f'https://www.google.com/search?q={msg}'
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+    response = requests.get(url, headers=headers)
     html_code = BeautifulSoup(response.text, 'html.parser')
     link = html_code.find('div', class_='g').find('a', href=True)
     if link:
